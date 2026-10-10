@@ -1,0 +1,16 @@
+{
+  "action": "synchronize",
+  "repository": {
+    "full_name": "intentflow/poc-refund-fixture"
+  },
+  "pull_request": {
+    "number": 17,
+    "base": {
+      "sha": "fixture-base-sha"
+    },
+    "head": {
+      "sha": "fixture-head-sha"
+    }
+  },
+  "fixture_notice": "Local GitHub-like payload. No live webhook or GitHub App installation is claimed."
+}

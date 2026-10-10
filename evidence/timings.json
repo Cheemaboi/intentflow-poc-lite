@@ -1,0 +1,12 @@
+{
+  "unsafe_pr": {
+    "parse": 4.6477,
+    "graph_retrieval": 0.0217,
+    "total_local_decision": 33.785
+  },
+  "safe_pr": {
+    "parse": 4.5076,
+    "graph_retrieval": 0.017,
+    "total_local_decision": 4.8678
+  }
+}

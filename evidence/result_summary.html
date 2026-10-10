@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>IntentFlow PoC-Lite evidence</title>
+<style>
+body{margin:0;background:#f4f7fb;color:#13233a;font:16px/1.45 Arial,sans-serif}
+main{max-width:1050px;margin:40px auto;background:white;border:1px solid #dbe4f0;border-radius:16px;padding:34px 42px;box-shadow:0 12px 34px rgba(20,42,75,.08)}
+h1{margin:0 0 4px;font-size:30px} .sub{color:#5b6b82;margin:0 0 26px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.case{border:1px solid #dbe4f0;border-radius:12px;padding:22px}
+.bad{border-top:5px solid #c43737} .good{border-top:5px solid #2f855a}
+.label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#64748b}
+.verdict{font-size:25px;font-weight:700;margin:4px 0 12px} .bad .verdict{color:#a61b1b} .good .verdict{color:#226b49}
+code{font-family:Consolas,monospace;background:#f1f5f9;padding:2px 5px;border-radius:4px}
+.trace{margin-top:20px;padding:16px;background:#eef4fb;border-radius:9px;font-family:Consolas,monospace;font-size:14px}
+.timing{margin-top:16px;color:#334155}
+footer{margin-top:22px;color:#64748b;font-size:13px}
+</style></head><body><main>
+<h1>IntentFlow PoC-Lite execution evidence</h1><p class="sub">Local controlled fixture. Python AST and in-memory graph fallbacks. No live GitHub or model claim.</p>
+<div class="grid">
+<section class="case bad"><div class="label">Unsafe PR fixture</div><div class="verdict">VIOLATION</div>
+<p>ADMIN authorization guard removed or weakened before the protected refund approval call.</p><p><b>Changed symbol:</b> <code>approve_refund</code></p>
+<div class="trace">REQ-001 &rarr; refund_service &rarr; approve_refund &rarr; RefundRepository.mark_approved</div><p class="timing"><b>Total local decision:</b> 33.785000 ms</p></section>
+<section class="case good"><div class="label">Safe refactor fixture</div><div class="verdict">NO_VIOLATION</div>
+<p>Authorization moved or refactored, but an ADMIN condition remains reachable before approval.</p><p><b>Evidence:</b> <code>require_admin(actor)</code> reaches the guard before approval.</p>
+<div class="trace">REQ-001 &rarr; refund_service &rarr; approve_refund &rarr; test_only_admin_can_approve</div><p class="timing"><b>Total local decision:</b> 4.867800 ms</p></section>
+</div><footer>Generated from the same JSON evidence saved in this folder on 2026-09-08.</footer>
+</main></body></html>

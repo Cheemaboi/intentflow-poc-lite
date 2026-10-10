@@ -1,0 +1,12 @@
+{
+  "name": "IntentFlow Product Intent Verification (local PoC fixture)",
+  "head_sha": "fixture-head-sha",
+  "status": "completed",
+  "conclusion": "success",
+  "output": {
+    "title": "NO_VIOLATION",
+    "summary": "Authorization moved or refactored, but an ADMIN condition remains reachable before approval.",
+    "text": "Trace: REQ-001 -> refund_service -> approve_refund -> RefundRepository.mark_approved"
+  },
+  "fixture_notice": "Generated locally from a saved GitHub-like event. Not published to GitHub."
+}

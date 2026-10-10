@@ -1,0 +1,58 @@
+{
+  "case": "safe_pr",
+  "parser": "Python ast fallback",
+  "graph_store": "in-memory adjacency graph fallback",
+  "github_mode": "saved event and generated check payload",
+  "verdict": "NO_VIOLATION",
+  "class": null,
+  "requirement": "REQ-001",
+  "changed_symbols": [
+    "approve_refund",
+    "require_admin"
+  ],
+  "changed_symbol": "approve_refund",
+  "base_admin_guard": true,
+  "pr_admin_guard": true,
+  "base_guard_evidence": [
+    {
+      "kind": "direct_guard",
+      "function": "approve_refund",
+      "line": 7,
+      "condition": "actor.role != 'ADMIN'"
+    }
+  ],
+  "pr_guard_evidence": [
+    {
+      "kind": "helper_call",
+      "function": "approve_refund",
+      "helper": "require_admin",
+      "line": 12
+    },
+    {
+      "kind": "direct_guard",
+      "function": "require_admin",
+      "line": 7,
+      "condition": "actor.role != 'ADMIN'"
+    }
+  ],
+  "protected_call": "RefundRepository.mark_approved",
+  "protected_call_line": 15,
+  "trace_to_protected_call": [
+    "REQ-001",
+    "refund_service",
+    "approve_refund",
+    "RefundRepository.mark_approved"
+  ],
+  "trace_to_relevant_test": [
+    "REQ-001",
+    "refund_service",
+    "approve_refund",
+    "test_only_admin_can_approve"
+  ],
+  "explanation": "Authorization moved or refactored, but an ADMIN condition remains reachable before approval.",
+  "timing_ms": {
+    "parse": 4.5076,
+    "graph_retrieval": 0.017,
+    "total_local_decision": 4.8678
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "case": "unsafe_pr",
+  "parser": "Python ast fallback",
+  "graph_store": "in-memory adjacency graph fallback",
+  "github_mode": "saved event and generated check payload",
+  "verdict": "VIOLATION",
+  "class": "ACCESS_PERMISSION_DRIFT",
+  "requirement": "REQ-001",
+  "changed_symbols": [
+    "approve_refund"
+  ],
+  "changed_symbol": "approve_refund",
+  "base_admin_guard": true,
+  "pr_admin_guard": false,
+  "base_guard_evidence": [
+    {
+      "kind": "direct_guard",
+      "function": "approve_refund",
+      "line": 7,
+      "condition": "actor.role != 'ADMIN'"
+    }
+  ],
+  "pr_guard_evidence": [],
+  "protected_call": "RefundRepository.mark_approved",
+  "protected_call_line": 9,
+  "trace_to_protected_call": [
+    "REQ-001",
+    "refund_service",
+    "approve_refund",
+    "RefundRepository.mark_approved"
+  ],
+  "trace_to_relevant_test": [
+    "REQ-001",
+    "refund_service",
+    "approve_refund",
+    "test_only_admin_can_approve"
+  ],
+  "explanation": "ADMIN authorization guard removed or weakened before the protected refund approval call.",
+  "timing_ms": {
+    "parse": 4.6477,
+    "graph_retrieval": 0.0217,
+    "total_local_decision": 33.785
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "intent_id": "REQ-001",
+  "actor": "ADMIN",
+  "action": "approve_refund",
+  "object": "refund",
+  "modality": "MUST",
+  "conditions": [
+    "refund.status == pending"
+  ],
+  "scope_include": [
+    "refund_service"
+  ],
+  "version": 1,
+  "plain_english": "Only an ADMIN can approve a pending refund."
+}

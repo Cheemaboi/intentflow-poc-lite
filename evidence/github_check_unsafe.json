@@ -1,0 +1,22 @@
+{
+  "name": "IntentFlow Product Intent Verification (local PoC fixture)",
+  "head_sha": "fixture-head-sha",
+  "status": "completed",
+  "conclusion": "failure",
+  "output": {
+    "title": "VIOLATION",
+    "summary": "ADMIN authorization guard removed or weakened before the protected refund approval call.",
+    "text": "Trace: REQ-001 -> refund_service -> approve_refund -> RefundRepository.mark_approved",
+    "annotations": [
+      {
+        "path": "refund_service.py",
+        "start_line": 9,
+        "end_line": 9,
+        "annotation_level": "failure",
+        "title": "ACCESS_PERMISSION_DRIFT",
+        "message": "REQ-001 requires ADMIN authorization before refund approval, but the guard is absent on the reachable approval path."
+      }
+    ]
+  },
+  "fixture_notice": "Generated locally from a saved GitHub-like event. Not published to GitHub."
+}

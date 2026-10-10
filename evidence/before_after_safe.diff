@@ -1,0 +1,17 @@
+--- base/refund_service.py
++++ safe_pr/refund_service.py
+@@ -3,9 +3,13 @@
+         pass
+ 
+ 
+-def approve_refund(actor, refund, repository: RefundRepository) -> None:
++def require_admin(actor) -> None:
+     if actor.role != "ADMIN":
+         raise PermissionError("Only ADMIN may approve refunds")
++
++
++def approve_refund(actor, refund, repository: RefundRepository) -> None:
++    require_admin(actor)
+     if refund.status != "pending":
+         raise ValueError("Refund must be pending")
+     repository.mark_approved(refund.id)

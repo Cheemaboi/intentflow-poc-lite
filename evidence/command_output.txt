@@ -1,0 +1,13 @@
+IntentFlow PoC-Lite | local controlled fixture
+Parser: Python ast fallback | Graph: in-memory adjacency fallback | GitHub: saved event
+
+UNSAFE CASE: VIOLATION | ACCESS_PERMISSION_DRIFT
+Changed symbol: approve_refund
+Evidence: ADMIN authorization guard removed or weakened before the protected refund approval call.
+Trace: REQ-001 -> refund_service -> approve_refund -> RefundRepository.mark_approved
+Timing: 33.785000 ms total local decision
+
+SAFE CASE: NO_VIOLATION
+Evidence: Authorization moved or refactored, but an ADMIN condition remains reachable before approval.
+Trace: REQ-001 -> refund_service -> approve_refund -> test_only_admin_can_approve
+Timing: 4.867800 ms total local decision
